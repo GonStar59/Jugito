@@ -5,9 +5,19 @@
 #include <random>
 #include <windows.h>
 #include <fstream>
+#include <thread>
+#include <chrono>
+
+    void printWithDelay(const std::string& text) {
+    for (char c : text) {
+        std::cout << c << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Adjust the delay as needed
+    }
+}
 
     void GuardarProgreso(int Money, int weaponD, int weaponI, int weaponH, int weaponM, int lifes, int weakener, int level,
-                    int blife, int bdamage, int bmana, int agi, int bint) {
+                    int blife, int bdamage, int bmana, int agi, int bint) 
+                    {
     std::ofstream archivo("progreso.txt");
 
     // Guarda las variables en el archivo
@@ -18,7 +28,7 @@
     archivo.close();
 }
 
-void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &weaponM, int &lifes, int &weakener, int &level,
+    void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &weaponM, int &lifes, int &weakener, int &level,
                     int &blife, int &bdamage, int &bmana, int &agi, int &bint) {
     std::ifstream archivo("progreso.txt");
 
@@ -52,6 +62,7 @@ void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &w
     {   
         int action,Comprando,action2;
         Comprando=0;
+        action=0;
         std::cout <<"You have: "<<Money<<" Gold coins\n";    
         std::cout <<"press 1 to buy a weapon,\n 2 to rings,\n 3 to buy necklace,\n 4 to buy Armor,\n 5 to go to the Magic shop,\n 6 to stop buying"<< std::endl;
         std::cin >>action;
@@ -440,7 +451,7 @@ void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &w
         std::cin >>action;
         if (action==1)
         {
-            if(stun<0){health=health-edamage*elevel+weaponH/2;}
+            if(stun>0){health=health-edamage*elevel+weaponH/2;}
             ehealth=ehealth-damage;
             conti=conti-1;
             if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
@@ -460,7 +471,7 @@ void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &w
          int defense = rand() % (16 - 1) + 1;
             if(defense*level>edamage*elevel) {std::cout <<"Your great defense let you rest and healed you"<< std::endl; }
 
-            if(stun<0){health=health-edamage*elevel+defense*level;}else{health=health+defense*level;}
+            if(stun>0){health=health-edamage*elevel+defense*level;}else{health=health+defense*level;}
 
             if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
             lifes=lifes-1;
@@ -478,7 +489,7 @@ void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &w
             }
             else
             {
-                if(stun<0){health=health-edamage*elevel+weaponH/2;}
+                if(stun>0){health=health-edamage*elevel+weaponH/2;}
                 if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
                 lifes=lifes-1;
             }
@@ -488,7 +499,7 @@ void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &w
         if (action==4)
         {
           Magic(inteligence,mana,health,ehealth,stun,damage,conti); 
-            if(stun<0){health=health-edamage*elevel+weaponH/2;}
+            if(stun>0){health=health-edamage*elevel+weaponH/2;}
             ehealth=ehealth-contid;
             conti=conti-1;
             if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
@@ -586,8 +597,8 @@ void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &w
          std::cout <<"Your base inteligence is: "<<bint<<std::endl;
      }
      }while(bint==0);
-     
-     std::cout <<"In a peaceful and prosperous kingdom, a sinister threat loomed in the shadows.\n The Demon King, accompanied by his seven generals, launched a devastating attack on the land, plunging everything into chaos and despair.\nFaced with imminent destruction, the King of the realm, knowing that an epic battle was on the horizon, summoned his bravest subjects.\n Among the crowd, his gaze fell upon you, a courageous and determined young individual.\n You were chosen as the hero destined to confront the evil that threatened to engulf your home.\nDespite the uncertainty and fear, you accepted your role with determination.\n The king bestowed upon you a legendary sword and ancestral armor, trusting that you could lead the resistance against the dark forces.\nWith a heavy heart, you bid farewell to your family, promising to return and preserve the peace they had always known.\n The journey ahead was perilous, but the fate of the kingdom rested on your shoulders as you set out to face the malevolent onslaught of the Demon King and his seven generals.\n\nYor adventure was just starting.\n";
+        Sleep(2000);
+        printWithDelay("In a peaceful and prosperous kingdom, a sinister threat loomed in the shadows.\n The Demon King, accompanied by his seven generals, launched a devastating attack on the land, plunging everything into chaos and despair.\nFaced with imminent destruction, the King of the realm, knowing that an epic battle was on the horizon, summoned his bravest subjects.\n Among the crowd, his gaze fell upon you, a courageous and determined young individual.\n You were chosen as the hero destined to confront the evil that threatened to engulf your home.\nDespite the uncertainty and fear, you accepted your role with determination.\n The king bestowed upon you a legendary sword and ancestral armor, trusting that you could lead the resistance against the dark forces.\nWith a heavy heart, you bid farewell to your family, promising to return and preserve the peace they had always known.\n The journey ahead was perilous, but the fate of the kingdom rested on your shoulders as you set out to face the malevolent onslaught of the Demon King and his seven generals.\nYour adventure was just starting.\n");
         }
     
     do
