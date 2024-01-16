@@ -4,6 +4,48 @@
 #include <ctime>
 #include <random>
 #include <windows.h>
+#include <fstream>
+
+    void GuardarProgreso(int Money, int weaponD, int weaponI, int weaponH, int weaponM, int lifes, int weakener, int level,
+                    int blife, int bdamage, int bmana, int agi, int bint) {
+    std::ofstream archivo("progreso.txt");
+
+    // Guarda las variables en el archivo
+    archivo << Money << " " << weaponD << " " << weaponI << " " << weaponH << " " << weaponM << " "
+            << lifes << " " << weakener << " " << level << " " << blife << " " << bdamage << " "
+            << bmana << " " << agi << " " << bint;
+
+    archivo.close();
+}
+
+void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &weaponM, int &lifes, int &weakener, int &level,
+                    int &blife, int &bdamage, int &bmana, int &agi, int &bint) {
+    std::ifstream archivo("progreso.txt");
+
+    // Verifica si el archivo se pudo abrir
+    if (archivo.is_open()) {
+        // Carga las variables desde el archivo
+        archivo >> Money >> weaponD >> weaponI >> weaponH >> weaponM >> lifes >> weakener >> level
+                >> blife >> bdamage >> bmana >> agi >> bint;
+
+        archivo.close();
+    } else {
+        // Si el archivo no se pudo abrir, asigna valores predeterminados
+        Money = 0;
+        weaponD = 0;
+        weaponI = 0;
+        weaponH = 0;
+        weaponM = 0;
+        lifes = 0;
+        weakener = 0;
+        level = 0;
+        blife = 0;
+        bdamage = 0;
+        bmana = 0;
+        agi = 0;
+        bint = 0;
+    }
+}
 
 
     void Buy(int &Money,int &weaponD,int &weaponI,int &cabeza,int &cuello,int &cuerpo,int &manos,int &anillos,int &weaponH,int &weaponM)
@@ -485,6 +527,12 @@
         weaponH=0;
         weaponI=0;
         weaponM=0;
+        std::cout <<"Press 1 to load your progress\n";
+        std::cin >>spin1;
+        if(spin1==1){
+          CargarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint);
+            
+        }
         do{
 
           if(bdamage==0 && blife==0 && bmana==0 && agi==0 )  {
@@ -544,7 +592,7 @@
     
     do
     {
-        
+     GuardarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint);   
      std::mt19937 rng(static_cast<unsigned int>(std::time(0))); // Seed the random number generator
      std::uniform_int_distribution<int> distribution(1, 10);
 
