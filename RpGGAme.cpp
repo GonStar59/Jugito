@@ -8,10 +8,17 @@
 #include <thread>
 #include <chrono>
 
-    void printWithDelay(const std::string& text) {
+  
+
+    void printWithDelay(const std::string& text)
+   { int skip=0; 
     for (char c : text) {
-        std::cout << c << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(25)); // Adjust the delay as needed
+        
+         std::cout << c << std::flush;
+         std::this_thread::sleep_for(std::chrono::milliseconds(25));
+         
+
+        
     }
 }
 
