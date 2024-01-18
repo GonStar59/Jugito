@@ -16,27 +16,27 @@
 }
 
     void GuardarProgreso(int Money, int weaponD, int weaponI, int weaponH, int weaponM, int lifes, int weakener, int level,
-                    int blife, int bdamage, int bmana, int agi, int bint) 
+                    int blife, int bdamage, int bmana, int agi, int bint, int bossfigt,int cabeza,int cuello,int cuerpo,int manos,int anillos) 
                     {
     std::ofstream archivo("progreso.txt");
 
     // Guarda las variables en el archivo
     archivo << Money << " " << weaponD << " " << weaponI << " " << weaponH << " " << weaponM << " "
             << lifes << " " << weakener << " " << level << " " << blife << " " << bdamage << " "
-            << bmana << " " << agi << " " << bint;
+            << bmana << " " << agi << " " << bint << " " << bossfigt<< " " << cabeza<< " " << cuello<< " " << cuerpo<< " " << manos<< " " << anillos ;
 
     archivo.close();
 }
 
     void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &weaponM, int &lifes, int &weakener, int &level,
-                    int &blife, int &bdamage, int &bmana, int &agi, int &bint) {
+                    int &blife, int &bdamage, int &bmana, int &agi, int &bint, int &bossfigt,int &cabeza,int &cuello, int &cuerpo, int &manos, int &anillos  ) {
     std::ifstream archivo("progreso.txt");
 
     // Verifica si el archivo se pudo abrir
     if (archivo.is_open()) {
         // Carga las variables desde el archivo
         archivo >> Money >> weaponD >> weaponI >> weaponH >> weaponM >> lifes >> weakener >> level
-                >> blife >> bdamage >> bmana >> agi >> bint;
+                >> blife >> bdamage >> bmana >> agi >> bint >> bossfigt;
 
         archivo.close();
     } else {
@@ -451,7 +451,7 @@
         std::cin >>action;
         if (action==1)
         {
-            if(stun>0){health=health-edamage*elevel+weaponH/2;}
+            if(stun<=0){health=health-edamage*elevel+weaponH/2;}
             ehealth=ehealth-damage;
             conti=conti-1;
             if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
@@ -471,7 +471,7 @@
          int defense = rand() % (16 - 1) + 1;
             if(defense*level>edamage*elevel) {std::cout <<"Your great defense let you rest and healed you"<< std::endl; }
 
-            if(stun>0){health=health-edamage*elevel+defense*level;}else{health=health+defense*level;}
+            if(stun<=0){health=health-edamage*elevel+defense*level;}else{health=health+defense*level;}
 
             if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
             lifes=lifes-1;
@@ -489,7 +489,7 @@
             }
             else
             {
-                if(stun>0){health=health-edamage*elevel+weaponH/2;}
+                if(stun<=0){health=health-edamage*elevel+weaponH/2;}
                 if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
                 lifes=lifes-1;
             }
@@ -499,7 +499,7 @@
         if (action==4)
         {
           Magic(inteligence,mana,health,ehealth,stun,damage,conti); 
-            if(stun>0){health=health-edamage*elevel+weaponH/2;}
+            if(stun<=0){health=health-edamage*elevel+weaponH/2;}
             ehealth=ehealth-contid;
             conti=conti-1;
             if( health <= 0 ) {std::cout <<"You Died"<< std::endl;
@@ -538,10 +538,11 @@
         weaponH=0;
         weaponI=0;
         weaponM=0;
+        cabeza,cuello,cuerpo,manos,anillos=0;
         std::cout <<"Press 1 to load your progress\n";
         std::cin >>spin1;
         if(spin1==1){
-          CargarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint);
+          CargarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint, bossfigt, cabeza,cuello,cuerpo,manos,anillos);
             
         }
         do{
@@ -603,7 +604,7 @@
     
     do
     {
-     GuardarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint);   
+     GuardarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint, bossfigt,cabeza,cuello,cuerpo,manos,anillos);   
      std::mt19937 rng(static_cast<unsigned int>(std::time(0))); // Seed the random number generator
      std::uniform_int_distribution<int> distribution(1, 10);
 
