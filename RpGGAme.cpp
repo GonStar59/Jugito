@@ -11,7 +11,7 @@
     void printWithDelay(const std::string& text) {
     for (char c : text) {
         std::cout << c << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Adjust the delay as needed
+        std::this_thread::sleep_for(std::chrono::milliseconds(25)); // Adjust the delay as needed
     }
 }
 
@@ -63,11 +63,11 @@
         int action,Comprando,action2;
         Comprando=0;
         action=0;
+       
+        while(Comprando==0){
         std::cout <<"You have: "<<Money<<" Gold coins\n";    
         std::cout <<"press 1 to buy a weapon,\n 2 to rings,\n 3 to buy necklace,\n 4 to buy Armor,\n 5 to go to the Magic shop,\n 6 to stop buying"<< std::endl;
         std::cin >>action;
-        while(Comprando==0){
-
             if (action==1)
             {
                 std::cout <<"press 1 to buy a dagger(20) ,\n 2 to buy the an axe(50),\n 3 to buy the elven bow (100),\n 4 to buy Gungnirs spear(300),\n 5 to buy the Hero's Sword(500)"<< std::endl;
@@ -98,6 +98,7 @@
                      else
                      {
                       std::cout <<"Non existent or you don't have enough money"<< std::endl; 
+                      
                      }          
             } 
             if (action==2)
@@ -130,6 +131,7 @@
                      else
                      {
                       std::cout <<"Non existent or you don't have enough money"<< std::endl; 
+                      
                      }          
                 
             }   
@@ -163,6 +165,7 @@
                      else
                      {
                       std::cout <<"Non existent or you don't have enough money"<< std::endl; 
+                      
                      }          
                 
             }   
@@ -196,6 +199,7 @@
                      else
                      {
                       std::cout <<"Non existent or you don't have enough money"<< std::endl; 
+                      
                      }          
                 
             }  
@@ -229,6 +233,7 @@
                      else
                      {
                       std::cout <<"Non existent or you don't have enough money"<< std::endl; 
+                      
                      }          
             } 
             if (action==6)
@@ -420,7 +425,7 @@
 
 
     }}
-    void pelear(int &blife, int &bdamage, int &elife, int &edamage, int &level, int &elevel, int &lifes, int &health, int &ehealth, int &action, int &weakener, int &bmana, int &agi, int &bint, int &bossfigt, int &weaponD, int &weaponI,int &weaponH, int &weaponM){
+    void pelear(int &blife, int &bdamage, int &elife, int &edamage, int &level, int &elevel, int &lifes, int &health, int &ehealth, int &action, int &weakener, int &bmana, int &agi, int &bint, int &bossfigt, int &weaponD, int &weaponI,int &weaponH, int &weaponM, int &escape){
     int mana,inteligence,stun,damage,contid,conti,agiLevel;    
     ehealth=elife*elevel;
     health=blife*level*2+weaponH;
@@ -428,7 +433,7 @@
     agiLevel=agi*level;
     inteligence=bint*level+weaponI;
     damage=bdamage*level+weaponD;
-    int escape = 0;
+    escape = 0;
     stun=0;
     conti=0;
     contid=inteligence;
@@ -445,7 +450,7 @@
         std::cout <<"Your level is : "<<level<<", your damage is "<<damage<<" , your life is "<<health<<" , you have remaining "<<mana<<" mana "<<" your intelligence is "<<inteligence<<std::endl;
         std::cout <<"The enemy level is : "<<elevel<<" , the enemy damage is "<<edamage*elevel<<" , the enemys life is "<<ehealth<< std::endl;
         std::cout <<"You have: "<<lifes<<"lifes remaining\n";
-        std::cout <<"The enmy is stuned for "<<stun<<" turns\n";
+        std::cout <<"The enemy is stuned for "<<stun<<" turns\n";
         std::cout <<"The enemy is burnt for "<<conti<<" turns\n";
         std::cout <<"press 1 to attack, 2 to defend, 3 to run, 4 to use magic"<< std::endl;
         std::cin >>action;
@@ -483,8 +488,10 @@
             ehealth=ehealth-contid;
             conti=conti-1;
             std::srand(std::time(0));
-             int evasion = std::rand() % 6; 
-            if( evasion + level +agiLevel >= elevel ) {std::cout <<"you run succesfully"<<std::endl;
+             int evasion = std::rand() % 10; 
+             std::srand(std::time(0));
+             int Eevasion = std::rand() % 21; 
+            if( evasion + level +agiLevel >= elevel+Eevasion ) {std::cout <<"you run succesfully"<<std::endl;
             escape=1;
             }
             else
@@ -538,6 +545,7 @@
         weaponH=0;
         weaponI=0;
         weaponM=0;
+        Money=0;
         cabeza,cuello,cuerpo,manos,anillos=0;
         std::cout <<"Press 1 to load your progress\n";
         std::cin >>spin1;
@@ -651,7 +659,7 @@
         elevel=2*level-weakener-e;
         ilev=lifes;
         bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+60;
         boss=boss+1;
         Money=Money+120;
@@ -662,7 +670,7 @@
         elevel=3*level-weakener-e;
         ilev=lifes;
         bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+80;
         boss=boss+1;
         Money=Money+180;}bossfigt=0;}
@@ -672,7 +680,7 @@
         elevel=3*level-weakener-e;
         ilev=lifes;
          bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+80;
         boss=boss+1;
         Money=Money+180;}bossfigt=0;}
@@ -682,7 +690,7 @@
         elevel=3*level-weakener-e;
         ilev=lifes;
          bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+90;
         boss=boss+1;
         Money=Money+290;}bossfigt=0;}
@@ -692,7 +700,7 @@
         elevel=3*level-weakener-e;
         ilev=lifes;
          bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+100;
         boss=boss+1;
         Money=Money+400;}bossfigt=0;}
@@ -702,7 +710,7 @@
         elevel=4*level-weakener-e;
         ilev=lifes;
          bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+150;
         boss=boss+1;
         Money=Money+500;}bossfigt=0;}
@@ -712,7 +720,7 @@
         elevel=4*level-weakener-e;
         ilev=lifes;
          bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+200;
         boss=boss+1;
         Money=Money+1000;}bossfigt=0;}
@@ -722,7 +730,7 @@
         elevel=5*level-weakener-e;
         ilev=lifes;
         bossfigt=1;
-        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+        pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
         if(lifes==ilev && escape!=1){level=level+1000;
         boss=boss+1;}bossfigt=0;}
         if(boss==8){
@@ -745,7 +753,7 @@
          std::cout <<"You encountered a dragon \n";   
          elevel=level+20-weakener;
          ilev=lifes;
-         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
          if(lifes==ilev && escape!=1){level=level+20;
          Money=Money+20;}
         }
@@ -754,7 +762,7 @@
          std::cout <<"You found a Hord of Wyverns\n";   /* code */
          elevel=level+6-weakener;
          ilev=lifes;
-         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
          if(lifes==ilev && escape!=1){level=level+6;
          Money=Money+10;}
         }
@@ -778,7 +786,7 @@
          std::cout <<"You ara attacked by a bear\n";   /* code */
          elevel=level+3-weakener;
          ilev=lifes;
-         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
          if(lifes==ilev && escape!=1){ level=level+3;
          Money=Money+10;
         }}
@@ -792,7 +800,7 @@
          std::cout <<"you are ambushed by a group of bandits\n";   /* code */
          elevel=level+1-weakener;
          ilev=lifes;
-         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
           if(lifes==ilev && escape!=1){level=level+2;
           Money=Money+10;
         }}
@@ -801,7 +809,7 @@
          std::cout <<"you found a goblin\n";   /* code */
          elevel=level-weakener ;
          ilev=lifes;
-         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM);
+         pelear(blife, bdamage, elife, edamage, level, elevel, lifes, ehealth, health, action,weakener,bmana,agi,bint,bossfigt,weaponD,weaponI,weaponH,weaponM,escape);
           if(lifes==ilev && escape!=1){level=level+2;
           Money=Money+10;
         }}
