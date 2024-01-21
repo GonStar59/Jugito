@@ -8,7 +8,207 @@
 #include <thread>
 #include <chrono>
 
-  
+    void ClassSelect( int &bdamage, int &blife, int &bmana, int &agi, int &bint)
+    {
+        float clase,secre;
+        std::cout << "Choose a class (1-10):" << std::endl;
+        std::cout << "1. Warrior\n2. Mage\n3. Rogue\n4. Paladin\n5. Sorcerer\n";
+        std::cout << "6. Berserker\n7. Assassin\n8. Knight\n9. Witch Doctor\n10. Archer\n11. Deprived\n";
+        std::cin >> clase;
+        if(clase%1=!0)
+        {
+         printWithDelay("That its a strange choice, what were you hoping to happen get an easter egg, a see that you semm special so especial that you would enjoy playing the game with zero on all your stats, Aplying changes in 3..2..1..Just joiking you actually got a prizer for opting to take yur own option you will be the all migthy dragon killer with some of the best stats but one of them will fall down \n\n1) Health \n2) Damage \n3) Mana\n 4) Intelligence\n  ");
+         std::cin >> secre;
+         switch (secre) {
+            case '1' :
+                blife += -4;
+               
+                break;
+
+            case '2' :
+                
+                bdamage += -4;
+                
+                break;
+
+            case '3' :
+                
+               
+                bmana += -4;
+                
+                break;
+
+            case '4' :
+                
+                bint += -4;
+                break;
+
+            default:
+             std::cout << "learn when to stop" << std::endl;
+                blife += -2;
+                bdamage += -2;
+                bint += -2;
+                bmana += -2;
+                agi=0;
+             return ;
+          }   
+
+          std::cout << "Sacrifice Agillity 1) Yes " << std::endl;
+          std::cin >> secre;
+          if(secre==1){
+                agi=0;
+                blife += 1;
+                bdamage += 1;
+                bint += 1;
+                bmana += 1;
+            }
+          std::cout << "Boost first stat \n1) Health \n2) Damage\n3) Mana \n4)Intelligence\n" << std::endl;
+          std::cin >> secre;
+          switch (secre) {
+            case '1' :
+                blife += +4;
+               
+                break;
+
+            case '2' :
+                
+                bdamage += +4;
+                
+                break;
+
+            case '3' :
+                
+               
+                bmana += +4;
+                
+                break;
+
+            case '4' :
+                
+                bint += +4;
+                break;
+
+            default:
+             std::cout << "learn when to stop" << std::endl;
+                blife += -2;
+                bdamage += -2;
+                bint += -2;
+                bmana += -2;
+                agi=0;
+             return ;
+          } 
+
+          std::cout << "Boost Second stat \n1) Health \n2) Damage\n3) Mana \n4)Intelligence\n" << std::endl;
+          std::cin >> secre;
+          switch (secre) {
+            case '1' :
+                blife += +4;
+               
+                break;
+
+            case '2' :
+                
+                bdamage += +4;
+                
+                break;
+
+            case '3' :
+                
+               
+                bmana += +4;
+                
+                break;
+
+            case '4' :
+                
+                bint += +4;
+                break;
+
+            default:
+             std::cout << "learn when to stop" << std::endl;
+                blife += -2;
+                bdamage += -2;
+                bint += -2;
+                bmana += -2;
+                agi=0;
+             return ;
+          }         
+
+        }
+        else{
+         switch (clase) {
+            case '1': // Warrior
+                blife += 2;
+                bdamage += 2;
+                bint += -1;
+                break;
+
+            case '2': // Mage
+                blife += -1;
+                bdamage += -2;
+                bint += 2;
+                bmana += 2;
+                break;
+
+            case '3': // Rogue
+                agi += 2;
+                break;
+
+            case '4': // Paladin
+                blife += 1;
+                bdamage += 1;
+                bmana += 1;
+                agi += -1;
+                break;
+
+            case '5': // Sorcerer
+                blife += -2;
+                bdamage += -1;
+                bint += 2;
+                bmana += 2;
+                break;
+
+            case '6': // Berserker
+                blife += 2;
+                bdamage += 4;
+                bint += -3;
+                bmana += -2;
+                agi += -2;
+                break;
+
+            case '7': // Assassin
+                agi += 2;
+                blife += -2;
+                bdamage += 2;
+                break;
+
+            case '8': // Knight
+                blife += 4;
+                bdamage += -1;
+                agi += -2;
+                break;
+
+            case '9': // Witch Doctor
+                blife += 2;
+                bdamage += -2;
+                bint += 2;
+                break;
+
+            case '10': // Archer
+                bdamage += 2;
+                agi += 1;
+                break;
+
+            case '11': // Deprived
+                break;    
+
+            default:
+                std::cout << "Invalid class identifier!" << std::endl;
+                ClassSelect(bdamage, blife, bmana, agi, bint);
+                
+            }    
+        }
+    }
 
     void printWithDelay(const std::string& text)
    { int skip=0; 
@@ -562,13 +762,13 @@
         }
         do{
 
-          if(bdamage==0 && blife==0 && bmana==0 && agi==0 )  {
+          if(bdamage==0 && blife==0 && bmana==0 && agi==0 && bint==0)  {
     do{
      std::cout <<"Press 0 to spin Health\n";
      std::cin >>spin1;
      if(spin1==0) {
         srand(time(0));
-        int roll = std::rand() % (21 - 1) + 1;
+        int roll = std::rand() % (21 - 5) + 1;
         blife=roll;
          std::cout <<"Your base health is: "<<blife;
      }
@@ -578,7 +778,7 @@
       std::cin >>spin1;
      if(spin1==9) {
         srand(time(0));
-        int roll = rand() % (21 - 1) + 1;
+        int roll = rand() % (21 - 4) + 1;
         bdamage=roll;
          std::cout <<"Your base damage is: "<<bdamage<<std::endl;
      }
@@ -588,7 +788,7 @@
      std::cin >>spin1;
      if(spin1==0) {
         srand(time(0));
-        int roll = std::rand() % (21 - 1) + 1;
+        int roll = std::rand() % (21 - 4) + 1;
         bmana=roll;
          std::cout <<"Your base mana is: "<<bmana;
      }
@@ -598,7 +798,7 @@
       std::cin >>spin1;
      if(spin1==9) {
         srand(time(0));
-        int roll = rand() % (21 - 1) + 1;
+        int roll = rand() % (21 - 4) + 1;
         agi=roll;
          std::cout <<"Your base Evasion is: "<<agi<<std::endl;
       }
@@ -608,11 +808,12 @@
      std::cin >>spin1;
      if(spin1==0) {
         srand(time(0));
-        int roll = std::rand() % (21 - 1) + 1;
+        int roll = std::rand() % (21 - 4) + 1;
         bint=roll;
          std::cout <<"Your base inteligence is: "<<bint<<std::endl;
      }
      }while(bint==0);
+        ClassSelect(bdamage, blife, bmana, agi, bint);
         Sleep(2000);
         printWithDelay("In a peaceful and prosperous kingdom, a sinister threat loomed in the shadows.\n The Demon King, accompanied by his seven generals, launched a devastating attack on the land, plunging everything into chaos and despair.\nFaced with imminent destruction, the King of the realm, knowing that an epic battle was on the horizon, summoned his bravest subjects.\n Among the crowd, his gaze fell upon you, a courageous and determined young individual.\n You were chosen as the hero destined to confront the evil that threatened to engulf your home.\nDespite the uncertainty and fear, you accepted your role with determination.\n The king bestowed upon you a legendary sword and ancestral armor, trusting that you could lead the resistance against the dark forces.\nWith a heavy heart, you bid farewell to your family, promising to return and preserve the peace they had always known.\n The journey ahead was perilous, but the fate of the kingdom rested on your shoulders as you set out to face the malevolent onslaught of the Demon King and his seven generals.\nYour adventure was just starting.\n");
         }
