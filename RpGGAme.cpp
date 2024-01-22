@@ -8,14 +8,68 @@
 #include <thread>
 #include <chrono>
 
+     void printWithDelay(const std::string& text)
+   { int skip=0; 
+    for (char c : text) {
+        
+         std::cout << c << std::flush;
+         std::this_thread::sleep_for(std::chrono::milliseconds(25));
+         
+
+        
+    }
+}
+
+    void LevelUP( int &bdamage, int &blife, int &bmana, int &agi, int &bint)
+    {
+        int secre;
+        std::cout << "Boost one stat \n1) Health \n2) Damage\n3) Mana \n4) Intelligence\n5) Agility" << std::endl;
+          std::cin >> secre;
+          switch (secre) {
+            case '1' :
+                blife += 1;
+               
+                break;
+
+            case '2' :
+                
+                bdamage += 1;
+                
+                break;
+
+            case '3' :
+                
+               
+                bmana += 1;
+                
+                break;
+
+            case '4' :
+                
+                bint += 1;
+                break;
+
+            case '5' :
+                
+                agi += 1;
+                break;
+            default:
+             break;
+             return ;
+          } 
+    }
+
     void ClassSelect( int &bdamage, int &blife, int &bmana, int &agi, int &bint)
     {
-        float clase,secre;
+        float clase;
+        int secre,clase1;
         std::cout << "Choose a class (1-10):" << std::endl;
         std::cout << "1. Warrior\n2. Mage\n3. Rogue\n4. Paladin\n5. Sorcerer\n";
         std::cout << "6. Berserker\n7. Assassin\n8. Knight\n9. Witch Doctor\n10. Archer\n11. Deprived\n";
         std::cin >> clase;
-        if(clase%1=!0)
+        clase=clase1;
+        clase=clase-clase1;
+        if(clase != 0)
         {
          printWithDelay("That its a strange choice, what were you hoping to happen get an easter egg, a see that you semm special so especial that you would enjoy playing the game with zero on all your stats, Aplying changes in 3..2..1..Just joiking you actually got a prizer for opting to take yur own option you will be the all migthy dragon killer with some of the best stats but one of them will fall down \n\n1) Health \n2) Damage \n3) Mana\n 4) Intelligence\n  ");
          std::cin >> secre;
@@ -66,26 +120,26 @@
           std::cin >> secre;
           switch (secre) {
             case '1' :
-                blife += +4;
+                blife += 4;
                
                 break;
 
             case '2' :
                 
-                bdamage += +4;
+                bdamage += 4;
                 
                 break;
 
             case '3' :
                 
                
-                bmana += +4;
+                bmana += 4;
                 
                 break;
 
             case '4' :
                 
-                bint += +4;
+                bint += 4;
                 break;
 
             default:
@@ -102,26 +156,26 @@
           std::cin >> secre;
           switch (secre) {
             case '1' :
-                blife += +4;
+                blife += 4;
                
                 break;
 
             case '2' :
                 
-                bdamage += +4;
+                bdamage += 4;
                 
                 break;
 
             case '3' :
                 
                
-                bmana += +4;
+                bmana += 4;
                 
                 break;
 
             case '4' :
                 
-                bint += +4;
+                bint += 4;
                 break;
 
             default:
@@ -134,9 +188,9 @@
              return ;
           }         
 
-        }
-        else{
-         switch (clase) {
+        }else{
+            
+         switch (clase1) {
             case '1': // Warrior
                 blife += 2;
                 bdamage += 2;
@@ -210,40 +264,30 @@
         }
     }
 
-    void printWithDelay(const std::string& text)
-   { int skip=0; 
-    for (char c : text) {
-        
-         std::cout << c << std::flush;
-         std::this_thread::sleep_for(std::chrono::milliseconds(25));
-         
-
-        
-    }
-}
+   
 
     void GuardarProgreso(int Money, int weaponD, int weaponI, int weaponH, int weaponM, int lifes, int weakener, int level,
-                    int blife, int bdamage, int bmana, int agi, int bint, int bossfigt,int cabeza,int cuello,int cuerpo,int manos,int anillos) 
+                    int blife, int bdamage, int bmana, int agi, int bint, int bossfigt,int cabeza,int cuello,int cuerpo,int manos,int anillos,int UP) 
                     {
     std::ofstream archivo("progreso.txt");
 
     // Guarda las variables en el archivo
     archivo << Money << " " << weaponD << " " << weaponI << " " << weaponH << " " << weaponM << " "
             << lifes << " " << weakener << " " << level << " " << blife << " " << bdamage << " "
-            << bmana << " " << agi << " " << bint << " " << bossfigt<< " " << cabeza<< " " << cuello<< " " << cuerpo<< " " << manos<< " " << anillos ;
+            << bmana << " " << agi << " " << bint << " " << bossfigt<< " " << cabeza<< " " << cuello<< " " << cuerpo<< " " << manos<< " " << anillos<<" "<<UP ;
 
     archivo.close();
 }
 
     void CargarProgreso(int &Money, int &weaponD, int &weaponI, int &weaponH, int &weaponM, int &lifes, int &weakener, int &level,
-                    int &blife, int &bdamage, int &bmana, int &agi, int &bint, int &bossfigt,int &cabeza,int &cuello, int &cuerpo, int &manos, int &anillos  ) {
+                    int &blife, int &bdamage, int &bmana, int &agi, int &bint, int &bossfigt,int &cabeza,int &cuello, int &cuerpo, int &manos, int &anillos,int &UP  ) {
     std::ifstream archivo("progreso.txt");
 
     // Verifica si el archivo se pudo abrir
     if (archivo.is_open()) {
         // Carga las variables desde el archivo
         archivo >> Money >> weaponD >> weaponI >> weaponH >> weaponM >> lifes >> weakener >> level
-                >> blife >> bdamage >> bmana >> agi >> bint >> bossfigt;
+                >> blife >> bdamage >> bmana >> agi >> bint >> bossfigt >> cabeza >> cuello >> cuerpo >> manos >> anillos >> UP;
 
         archivo.close();
     } else {
@@ -733,6 +777,7 @@
     
     int main () 
     {
+     int UP;
      int  blife,bdamage,elife,edamage,roll,spin1,e,run,level,elevel,disaster,health,ehealth,evasion,action,defense,escape,lifes,weakener,boss,ilev,bmana,agi,bint,bossfigt,shop,weaponD,weaponI,Money,cabeza,cuello,cuerpo,manos,anillos,weaponH,weaponM;
         elife=15;
         edamage=10; 
@@ -753,11 +798,11 @@
         weaponI=0;
         weaponM=0;
         Money=0;
-        cabeza,cuello,cuerpo,manos,anillos=0;
+        UP,cuello,cuerpo,manos,anillos=0;
         std::cout <<"Press 1 to load your progress\n";
         std::cin >>spin1;
         if(spin1==1){
-          CargarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint, bossfigt, cabeza,cuello,cuerpo,manos,anillos);
+          CargarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint, bossfigt, cabeza,cuello,cuerpo,manos,anillos,UP);
             
         }
         do{
@@ -820,7 +865,7 @@
     
     do
     {
-     GuardarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint, bossfigt,cabeza,cuello,cuerpo,manos,anillos);   
+     GuardarProgreso(Money, weaponD, weaponI, weaponH,  weaponM,  lifes,  weakener, level, blife,  bdamage,  bmana,  agi,  bint, bossfigt,cabeza,cuello,cuerpo,manos,anillos,UP);   
      std::mt19937 rng(static_cast<unsigned int>(std::time(0))); // Seed the random number generator
      std::uniform_int_distribution<int> distribution(1, 10);
 
@@ -854,6 +899,12 @@
          weakener=0;
             break;
         }
+        if (level>=UP)
+        {
+         LevelUP(bdamage, blife, bmana, agi, bint);
+         UP +=100;  
+        }
+        
         if (e==shop)
         {
             std::cout <<"You entered a shop to buy items \n";
@@ -1037,9 +1088,13 @@
         }
          if (e==10)
         {
-         std::cout <<"A divine gift increase all your stats by 2 and gave you an extra life \n";   /* code */
-         blife=blife+4 ;// its proportional to the max life you can get at the beginig of the game 
-         bdamage=bdamage+2 ;
+         std::cout <<"A divine gift increase all your stats by 2 and gave you an extra life \n";  
+         blife += 2;
+         bdamage += 2;
+         bint += -2;
+         bmana += 2;
+         agi +=2;
+
          lifes=lifes+1;
          Money=Money+100;
          std::cout <<"Your level is : "<<level<<", your damage is "<<bdamage*level<<", your life is "<<blife*level*2<< std::endl;
@@ -1055,5 +1110,3 @@
         } while (lifes > 0);
         return 0;
     }
-
-   
