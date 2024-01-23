@@ -36,7 +36,8 @@ void RandomMatriz(int M[100][100],int n){
 {
     for(j=0;j<n;j++)
     {
-       matriz[i][j]=std::rand() % (201) - 100;;
+        srand(time(0));
+        matriz[i][j]=std::rand() % (201) - 100;;
     }
 
 }
