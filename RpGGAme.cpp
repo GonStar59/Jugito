@@ -813,7 +813,7 @@
      std::cin >>spin1;
      if(spin1==0) {
         srand(time(0));
-        int roll = std::rand() % (21 - 5) + 1;
+        int roll = std::rand() % (21 - 5) + 5;
         blife=roll;
          std::cout <<"Your base health is: "<<blife;
      }
@@ -823,7 +823,7 @@
       std::cin >>spin1;
      if(spin1==9) {
         srand(time(0));
-        int roll = rand() % (21 - 4) + 1;
+        int roll = rand() % (21 - 4) + 4;
         bdamage=roll;
          std::cout <<"Your base damage is: "<<bdamage<<std::endl;
      }
@@ -833,7 +833,7 @@
      std::cin >>spin1;
      if(spin1==0) {
         srand(time(0));
-        int roll = std::rand() % (21 - 4) + 1;
+        int roll = std::rand() % (21 - 4) + 4;
         bmana=roll;
          std::cout <<"Your base mana is: "<<bmana;
      }
@@ -843,7 +843,7 @@
       std::cin >>spin1;
      if(spin1==9) {
         srand(time(0));
-        int roll = rand() % (21 - 4) + 1;
+        int roll = rand() % (21 - 4) + 4;
         agi=roll;
          std::cout <<"Your base Evasion is: "<<agi<<std::endl;
       }
@@ -853,7 +853,7 @@
      std::cin >>spin1;
      if(spin1==0) {
         srand(time(0));
-        int roll = std::rand() % (21 - 4) + 1;
+        int roll = std::rand() % (21 - 4) + 4;
         bint=roll;
          std::cout <<"Your base inteligence is: "<<bint<<std::endl;
      }
