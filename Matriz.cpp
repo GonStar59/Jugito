@@ -36,7 +36,7 @@ void RandomMatriz(int M[100][100],int n){
 {
     for(j=0;j<n;j++)
     {
-        srand(time(0));
+        srand(time(0)); 
         matriz[i][j]=std::rand() % (201) - 100;;
     }
 
@@ -110,7 +110,7 @@ void MultMatriz(int M1[100][100],int M2[100][100],int Resultado[100][100],int n)
         for(j=0;j<n;j++) {
              Resultado[i][j]=0;
                 for(j1=0; j1<n; j1++) {
-                  Resultado[i][j] = Resultado[i][j] + M1[i][j1]*M2[j1][i];     
+                  Resultado[i][j] = Resultado[i][j] + M1[i][j1]*M2[j1][j];     
                 }
                      
             }
@@ -138,7 +138,7 @@ int matriz1[100][100],matriz2[100][100],Resultado[100][100],Identidad[100][100],
 
     SacarMatriz(matriz2,n);
     
-    std::cout<<"Eliga la operacion de matrizes \n\t1) Suma\n\t2) Resta\n\t3) Multiplicacion\n\t4) Multiplia A por otro numero \n\t5) Multiplia B por otro numero \n\t6) Cambia A \n\t7) Cambia B \n\t8) Cambiar todo \n\t9) Feeling Lucky\n\t0) Salir";
+    std::cout<<"Eliga la operacion de matrizes \n\t1) Suma\n\t2) Resta\n\t3) Multiplicacion\n\t4) Multiplia A por otro numero \n\t5) Multiplia B por otro numero \n\t6) Cambia A \n\t7) Cambia B \n\t8) Cambiar todo \n\t9) Feeling Lucky\n\t0) Salir\n";
     std::cin>>op;
     if(op==1){
          std::cout<<"Que quieres Sumar que:\n\t1)A+B\n\t2)A+Identidad\n\t3)B+Identidad\n"
